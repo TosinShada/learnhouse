@@ -9,8 +9,8 @@ WORKDIR /app
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 
-RUN corepack enable pnpm
-RUN pnpm i --frozen-lockfile
+RUN corepack enable yarn
+RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -29,9 +29,9 @@ COPY . .
 # Learn more about it in the Next.js documentation: https://nextjs.org/docs/basic-features/environment-variables
 RUN rm -f .env*
 
-RUN corepack enable pnpm
-RUN pnpm i --frozen-lockfile
-RUN pnpm run build
+RUN corepack enable yarn
+RUN yarn install --frozen-lockfile
+RUN yarn build
 
 # Production image, copy all the files and run next
 FROM base AS runner

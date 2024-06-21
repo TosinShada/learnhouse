@@ -21,12 +21,13 @@ ENV NEXT_PUBLIC_LEARNHOUSE_DOMAIN=localhost
 ENV NEXT_PUBLIC_LEARNHOUSE_COLLABORATION_WS_URL=ws://localhost:1998
 
 WORKDIR /app/web
-COPY ./apps/web/package.json ./apps/web/pnpm-lock.yaml* ./
+COPY ./apps/web/package.json ./apps/web/yarn.lock* ./
 COPY ./apps/web /app/web
 RUN rm -f .env* 
-RUN if [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile && pnpm run build; \
-    else echo "Lockfile not found." && exit 1; \
-    fi
+
+RUN corepack enable yarn
+RUN yarn install --frozen-lockfile
+RUN yarn build
 
 # Final image
 FROM base as runner 
