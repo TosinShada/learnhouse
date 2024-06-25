@@ -16,8 +16,8 @@ hosting_config:
   ssl: true
   port: 1338
   allowed_origins:
+    - http://localhost
     - http://localhost:3000
-    - http://localhost:3001
   cookies_config:
     domain: ".localhost"
   allowed_regexp: '\b((?:https?://)[^\s/$.?#].[^\s]*)\b'
@@ -32,12 +32,12 @@ mailing_config:
   system_email_adress: ""
 
 database_config:
-  sql_connection_string: postgresql://learnhouse:learnhouse@localhost:5432/learnhouse
+  sql_connection_string: postgresql://learnhouse:learnhouse@db:5432/learnhouse
 
 redis_config:
-  redis_connection_string: redis://localhost:6379/learnhouse
+  redis_connection_string: redis://redis:6379/learnhouse
 
 ai_config:
   chromadb_config:
     isSeparateDatabaseEnabled: True
-    db_host: "localhost"
+    db_host: "chromadb"

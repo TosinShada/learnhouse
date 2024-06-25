@@ -24,5 +24,7 @@ RUN poetry install --no-interaction --no-ansi
 # 
 COPY ./ /usr/learnhouse
 
+WORKDIR /usr/learnhouse
+
 # 
 CMD ["python" , "app.py"]

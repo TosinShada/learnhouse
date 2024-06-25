@@ -4,6 +4,7 @@ import NextTopLoader from 'nextjs-toploader';
 import Toast from '@components/StyledElements/Toast/Toast'
 import '@styles/globals.css'
 import Onboarding from '@components/Onboarding/Onboarding';
+import { TEST_ENV } from '@services/config/config';
 
 export default function RootLayout({
   children,
@@ -12,6 +13,7 @@ export default function RootLayout({
   children: React.ReactNode
   params: any
 }) {
+  console.log('TEST_ENV', TEST_ENV)
   return (
     <div>
       <OrgProvider orgslug={params.orgslug}>
